@@ -20,5 +20,10 @@
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="ログアウト" />
     </form>
+        
+    <a href="/admin" sec:authorize="hasAuthority('ADMIN')">管理者用画面へ</a>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="ログアウト" />
+    </form>
 </body>
 </html>

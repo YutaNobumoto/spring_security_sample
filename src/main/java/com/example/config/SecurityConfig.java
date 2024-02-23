@@ -13,7 +13,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//認証・認可に関する設定を追加
+		//認証・認可に関する設定
+		
+		//認可の設定
+		http.authorizeRequests()
+		.antMatchers("/loginForm").permitAll()
+		.antMatchers("/admin").hasAuthority("ADMIN")//管理者のみ/adminにアクセス可能
+		.anyRequest().authenticated();
 		
 		//ログイン処理
 		http.formLogin()
